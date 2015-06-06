@@ -1,5 +1,9 @@
 (ns cijp.fibo)
 
+;;
+
+(set! *print-length* 10)
+
 (defn fact [n]
   (condp = n
     0 1
@@ -56,3 +60,28 @@
 (time (memo-fibo 36))
 
 ;; (fibo 100)
+
+
+;; Clojure style fibo
+
+(defn fb [[a b]] [b (+ a b)])
+
+(fb [2 3])
+
+(defn fb-iter []  (iterate fb [1 1]))
+
+(fb-iter)
+
+(map first (fb-iter))
+
+(defn fibo [n]
+  (map first (take n (fb-iter))))
+
+(defn fibo [n]
+  (->> (iterate
+         (fn [[a b]] [b (+ a b)])
+         [1 1])
+       (take n)
+       (map first)))
+
+(fibo 10)
