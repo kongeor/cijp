@@ -92,6 +92,11 @@
         (map :name fd/players)
         (repeat "clojure")))))
 
+(->> fd/players
+    (map #(select-keys % [:name]))
+    (map #(merge % {:will-lear "clojure"})))
+
+(merge-with)
 
 ;; Well, I hope it does not look something like this:
 
