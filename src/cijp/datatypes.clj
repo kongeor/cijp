@@ -15,4 +15,8 @@
 (type #"[0-9]+")
 
 
-;; Composite data types
+;; Symbols
+
+;; Data Structures
+
+;; TODO add
