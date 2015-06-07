@@ -11,6 +11,7 @@
 (type :foo)
 (type nil)
 (type "foo")
+(type #"[0-9]+")
 
 
 ;; Composite data types
