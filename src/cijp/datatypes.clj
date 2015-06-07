@@ -10,6 +10,7 @@
 (type 10/3)
 (type :foo)
 (type nil)
+(type \c)
 (type "foo")
 (type #"[0-9]+")
 
