@@ -6,6 +6,7 @@
 (type 1)
 (type 1.5)
 (type 1N)
+(type 1.M)
 (type true)
 (type 10/3)
 (type :foo)
@@ -19,4 +20,10 @@
 
 ;; Data Structures
 
-;; TODO add
+(type [1 2 3])
+
+(type {:a 1 :b 2})
+
+(type #{1 2 3})
+
+(type '(1 2 3 4))

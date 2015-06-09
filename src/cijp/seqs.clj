@@ -28,9 +28,13 @@
 
 ;; Sets and Maps
 
+(def m {:a 1 :b 2 :c 3})
+
+(conj m [:d 4])
+
 (def s #{1 2 3 4 5})
 
-(def m {:a 1 :b 2 :c 3})
+(conj s 2)
 
 ;; Equality
 
@@ -40,4 +44,14 @@
 
 (= s s2)
 
+(= [1 2] '( 1 2 ))
 
+(:a {:a 1})
+
+({["foo" "bar"] 1} ["foo" "bar"])
+
+([:a :b :c] 1)
+
+(#{1 2 3} 5)
+
+(filter #{1 2} [1 2 3 4 5])

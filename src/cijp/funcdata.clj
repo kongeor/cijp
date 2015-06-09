@@ -15,7 +15,7 @@
     :team :red
     :skills #{:go-left}
     }
-   {:name "Stelios"
+   #_{:name "Stelios"
     :height 177
     :accuracy 6/10
     :team :red
@@ -40,9 +40,11 @@
     :skills #{:access-denied :number-23}
     }])
 
-;; First
+;; First & Rest
 
 (def bill (first players))
+
+(rest players)
 
 ;; Keyword as function
 
@@ -82,6 +84,7 @@
   (update-in player [:height] * 2))
 
 (player->uberplayer bill)
+
 ;; Cool functions
 
 (pprint (sort-by :accuracy > players))

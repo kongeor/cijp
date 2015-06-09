@@ -3,7 +3,7 @@
 
 (set! *print-length* 20)
 
-(range 10)
+(take 5 (drop 1000000000000 (range 1000000000000000000000)))
 
 (def N (* 2 1000 1000))
 
@@ -28,7 +28,7 @@
 
 (take 5 (filter slow-odd? (range 10000)))
 
-(take 5 (filter slow-odd? (range)))
+(time (doall (take 17 (filter slow-odd? (range)))))
 
 (iterate inc 1)
 
@@ -42,9 +42,10 @@
 (for [x (range 10)]
   (* x x))
 
-(clojure.pprint/pprint (for [x (range 10)
-                             y (range 10)]
-                         [x y]))
+(clojure.pprint/pprint
+  (for [x (range 10)
+        y (range 10)]
+    [x y]))
 
 (for [x (range 5)
       y (range 5)
@@ -75,9 +76,13 @@
 
 (partition 3 (range 10))
 
+(first (first {:a 1 :b 2}))
+
 ;; idiomatic
 
 (apply map vector (partition 3 (range 10)))
+
+(map vector [1 2] [3 4])
 
 
 ;; Putting it all together
@@ -111,4 +116,19 @@
     (take
       3000
       (repeatedly rand-char))))
+
+
+(defn hello [x]
+  (str "hello " x))
+
+(def +hello (partial hello "takis"))
+
+(def ++hello (comp count clojure.string/reverse +hello))
+
+(repeatedly ++hello)
+
+(def +pending (partial + 5))
+
+(+pending 3)
+
 

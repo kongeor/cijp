@@ -17,6 +17,8 @@
 
 (def message "where's the money lebowski")
 
+(. message substring 5 15)
+
 (.substring message 5 15)
 
 ;; Constucting objects
