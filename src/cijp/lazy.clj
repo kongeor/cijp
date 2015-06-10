@@ -3,32 +3,39 @@
 
 (set! *print-length* 20)
 
+;; Fast!
+
+(take 5 (range 1000000000000))
+
+;; Slow!
+
 (take 5 (drop 1000000000000 (range 1000000000000000000000)))
 
-(def N (* 2 1000 1000))
+;; Not the correct way to time it
 
-(def M (- N 1000))
+(time (take 5 (drop 10000000 (range 20000000))))
 
-(time (take 5 (range N)))
+;; Fixed!
 
-;; Hm ...
+(time (doall (take 5 (drop 10000000 (range 20000000)))))
 
-(time (take 5 (drop M (range N))))
+;; A similar example
 
-(time (doall (take 5 (drop M (range N)))))
-
-
-;; 
-
-(defn slow-odd? [x]
-  (Thread/sleep 50)
+(defn printable-odd? [x]
+  (println x)
   (odd? x))
 
-(filter slow-odd? (range 20))
+(filter printable-odd? (range 20))
 
-(take 5 (filter slow-odd? (range 10000)))
+(take 5 (filter printable-odd? (range 10000)))
 
-(time (doall (take 17 (filter slow-odd? (range)))))
+;; Hm ....
+
+(def x (take 5 (filter printable-odd? (range 10000))))
+
+(print x)
+
+;; Infinite sequences
 
 (iterate inc 1)
 
@@ -74,34 +81,15 @@
   (iterate inc 1)
   (cycle [:red :green]))
 
-(partition 3 (range 10))
+;; Partitioning
 
-(first (first {:a 1 :b 2}))
+(partition 3 (range 10))
 
 ;; idiomatic
 
 (apply map vector (partition 3 (range 10)))
 
-(map vector [1 2] [3 4])
-
-
-;; Putting it all together
-
-(clojure.pprint/pprint
-  (map
-    #(zipmap [:id :name :will-learn] %)
-    (partition
-      3
-      (interleave
-        (iterate inc 1)
-        (map :name fd/players)
-        (repeat "clojure")))))
-
-(->> fd/players
-    (map #(select-keys % [:name]))
-    (map #(merge % {:will-lear "clojure"})))
-
-(merge-with)
+(map vector [1 2] [3 4] [:a :b])
 
 ;; Well, I hope it does not look something like this:
 
@@ -116,19 +104,3 @@
     (take
       3000
       (repeatedly rand-char))))
-
-
-(defn hello [x]
-  (str "hello " x))
-
-(def +hello (partial hello "takis"))
-
-(def ++hello (comp count clojure.string/reverse +hello))
-
-(repeatedly ++hello)
-
-(def +pending (partial + 5))
-
-(+pending 3)
-
-

@@ -2,6 +2,8 @@
   (:require [clojure.pprint :refer [pprint]]
             [clojure.set :as set]))
 
+;; It looks like JSON ...
+
 (def players
   [{:name "Bill"
     :height 183
@@ -15,7 +17,7 @@
     :team :red
     :skills #{:go-left}
     }
-   #_{:name "Stelios"
+   {:name "Stelios"
     :height 177
     :accuracy 6/10
     :team :red
@@ -72,9 +74,21 @@
         s (reduce + nums)]
     (/ s c)))
 
+(avg [1 2 3 4])
+
+;; Player accuracy average
 
 (avg (map :accuracy players))
+
+;; coerce to float
+
 (float (avg (map :height players)))
+
+;; Same as before but using fewer parentheses
+
+(->> players (map :height) avg float)
+
+;; The same code will be produced
 
 (macroexpand '(->> players (map :height) avg float))
 
@@ -93,8 +107,10 @@
 
 (pprint (map player->uberplayer players))
 
-(some uberplayer? (map player->uberplayer players))
+;; Using apply
 
-(every? uberplayer? players)
+(set/intersection #{1 2 3} #{2 3} #{3})
+
+;; Collecting all the skills
+
 (apply set/union (map :skills players))
-(reduce conj #{} (map :skills players))

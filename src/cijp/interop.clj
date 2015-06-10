@@ -41,6 +41,8 @@
 
 (println al)
 
+;; See what happens Larry?
+
 (Collections/sort al)
 
 ;; Using the doto macro

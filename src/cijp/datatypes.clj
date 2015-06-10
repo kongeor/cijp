@@ -2,7 +2,6 @@
 
 ;; Basic Data Types
 
-
 (type 1)
 (type 1.5)
 (type 1N)
@@ -15,7 +14,6 @@
 (type "foo")
 (type #"[0-9]+")
 
-
 ;; Symbols
 
 ;; Data Structures
@@ -26,4 +24,4 @@
 
 (type #{1 2 3})
 
-(type '(1 2 3 4))
+(type (list 1 2 3 4))
